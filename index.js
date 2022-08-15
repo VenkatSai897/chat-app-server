@@ -23,10 +23,14 @@ mongoose.connect(
 );
 
 //middleware
+const corsOptions = {
+  origin:"https://chat-app-client-mu.vercel.app/",
+  optionsSuccessStatus: 200 
+}
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(cors());
+app.use(cors(corsOptions));
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
