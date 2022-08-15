@@ -10,6 +10,7 @@ const authRoute = require("./routes/auth");
 const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const path = require("path");
+const cors = require('cors');
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ mongoose.connect(
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-
+app.use(cors());
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
